@@ -1,0 +1,4 @@
+TL is a toy language that is comprised of expressions. These expressions
+represent simple arithmetic operations. 
+
+EXPR = NUM | PLUS EXPR EXPR | MINUS EXPR EXPR | TIMES EXPR EXPR | DIV EXPR EXPR
