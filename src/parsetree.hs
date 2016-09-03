@@ -6,5 +6,4 @@ import TLTokenize
 data Expr a = IConst Integer | FConst Float | BinExpr Token Expr Expr 
 
 tlParse :: TokenStr -> Expr
-tlParse (x:xs) 
-  | x =
+tlParse (ADD:xs) = BinExpr ADD $ 
