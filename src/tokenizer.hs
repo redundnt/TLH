@@ -1,9 +1,15 @@
 {- Emits a list of tokens -}
-import Data.Char
-module ( tokenize)
+module TLTokenize ( tokenize ) where
 
-data Token =  FVal Float | IVal Integer | ADD | SUB | DIV | MUL deriving (Show)
-tokenize :: String -> [Token]
+import Data.Char
+
+type TokenStr = [Token]
+data Token = FVal Float | IVal Integer 
+           | ADD | SUB | DIV | MUL | POW
+           | PLEFT | PRIGHT 
+           deriving (Show)
+
+tokenize :: String -> TokenStr
 tokenize s = map tokenizeWord $ words s
   where
     tokenizeWord :: String -> Token
@@ -11,6 +17,9 @@ tokenize s = map tokenizeWord $ words s
     tokenizeWord "-"    = SUB
     tokenizeWord "/"    = DIV
     tokenizeWord "*"    = MUL
+    tokenizeWord "("    = PLEFT
+    tokenizeWord ")"    = PRIGHT
+    tokenizeWord "^"   = POW
     tokenizeWord s
       | '.' `elem` s    = FVal $ read s 
       | otherwise       = IVal $ read s
